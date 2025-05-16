@@ -36,3 +36,6 @@ app.py파일에 pip install -r requirements.txt 삽입
 =======
 app.py파일에 pip install -r requirements.txt 삽입
 >>>>>>> f9c9848811b1905f63faa6e0328906ab3a216679
+
+
+# 안녕하세요  반갑습니다
