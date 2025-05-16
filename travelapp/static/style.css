@@ -1,0 +1,216 @@
+/*======================================Base Styles======================================*/
+/* 📄 전체 웹 페이지(body)에 적용되는 기본 스타일 */
+body {
+    font-family: 'Segoe UI', sans-serif; /* 글꼴: Segoe UI 사용, 없으면 기본 sans-serif */
+    background-color: #f4f4f4;         /* 배경색: 연한 회색 (눈에 편한 톤) */
+    margin: 0;                           /* 브라우저 기본 여백 제거 */
+    padding: 0;                          /* 안쪽 여백도 제거 */
+}
+
+/* 🔵 상단 헤더(타이틀 영역) 스타일 */
+header {
+    background-color: #007bff;         /* 배경색: 파란색 (부트스트랩 기본 파랑) */
+    color: white;                      /* 글자색: 흰색 */
+    padding: 15px;                       /* 안쪽 여백(상하좌우): 15px */
+    text-align: center;                  /* 텍스트 가운데 정렬 */
+}
+
+/* 🔻 하단 푸터 영역 스타일 */
+footer {
+    background-color: #f1f1f1;         /* 배경색: 아주 연한 회색 */
+    padding: 10px;                       /* 안쪽 여백 */
+    text-align: center;                  /* 가운데 정렬 */
+}
+
+/* 🧱 본문 전체를 감싸는 박스 */
+.main-container {
+    padding: 20px;                       /* 여백을 조금 줘서 여유 공간 확보 */
+}
+/*======================================Grid Layout======================================*/
+
+/* 📦 패널들을 가로로 나란히 배치하는 컨테이너 */
+.grid-container {
+    display: flex;                       /* Flexbox를 사용해서 가로 정렬 */
+    gap: 20px;                           /* 각 패널 사이의 간격: 20px */
+}
+
+/* ⬛ 가운데 일정 영역 */
+.center-panel {
+    background: #fff;                  /* 배경: 흰색 */
+    padding: 20px;                       /* 내부 여백: 20px */
+    border-radius: 10px;                 /* 모서리 둥글게: 10px */
+    flex: 2;                             /* Flex 비율: 2 */
+    box-shadow: 0 0 10px #ccc;         /* 그림자: 연한 회색 */
+}
+
+/* 🗺️ 오른쪽 지도 영역 */
+.right-panel {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 2;
+    box-shadow: 0 0 10px #ccc;
+}
+
+/* 사이드바 토글 동작 시 본문 밀림 효과 */
+.main-wrapper {
+    margin-left: 0;                      /* 초기 상태: margin 0 */
+    transition: margin-left 0.3s ease;   /* 부드러운 애니메이션 */
+}
+/*=====================================Form Elements=====================================*/
+
+/* 폼 요소의 라벨 공통 스타일 */
+label {
+    font-weight: bold;                    /* 굵은 글씨 */
+    display: block;                       /* 블록 레벨로 설정 */
+    margin-top: 10px;                     /* 위쪽 여백 */
+    margin-bottom: 10px;                  /* 아래쪽 여백 */
+    color: #333;                        /* 글자색: 진한 회색 */
+}
+
+/* 입력(input), 선택(select), textarea: 공통 폼 컨트롤 스타일 */
+input[type="date"],
+input[type="text"],
+select,
+textarea {
+    width: 100%;                          /* 너비 100% */
+    padding: 8px;                         /* 내부 여백 */
+    border: 1px solid #ccc;             /* 테두리 색: 연한 회색 */
+    border-radius: 5px;                   /* 모서리 둥글게 */
+    font-size: 14px;                      /* 글자 크기 */
+    box-sizing: border-box;               /* 패딩 포함 너비 계산 */
+    background-color: #fff;             /* 배경: 흰색 */
+    margin-bottom: 12px;                  /* 아래쪽 여백 */
+}
+
+/* 🖱️ button: 폼 제출 버튼 스타일 */
+button {
+    padding: 10px 15px;                   /* 상하 10px, 좌우 15px */
+    background-color: #007bff;          /* 파란색 배경 */
+    color: white;                       /* 글자색 흰색 */
+    border: none;                         /* 기본 테두리 제거 */
+    border-radius: 6px;                   /* 둥근 버튼 */
+    cursor: pointer;                      /* 마우스를 올리면 커서 모양 변경 */
+    font-size: 14px;
+    margin-top: 10px;                     /* 위쪽 여백 */
+}
+
+/* button hover 상태: 마우스 오버 시 배경 진하게 */
+button:hover {
+    background-color: #0056b3;
+}
+
+/* 입력창 안의 row 정렬 (가로 2개 나란히) */
+.row {
+    display: flex;                        /* Flexbox */
+    gap: 16px;                            /* 좌우 간격 */
+    margin-bottom: 10px;                  /* 행 간 간격 */
+}
+.row .half {
+    flex: 1;                              /* 비율 1:1 */
+    display: flex;
+    flex-direction: column;               /* 내부 요소 세로 배치 */
+}
+/*==================================Theme Toggle Group==================================*/
+
+/* 토글용 체크박스 숨기기 */
+.theme-toggle-group input[type="checkbox"] {
+    display: none;
+}
+
+/* 체크박스 레이블: 기본 상태 */
+.theme-toggle-group label {
+    padding: 8px 14px;                    /* 패딩 */
+    background-color: #f0f0f0;          /* 배경: 연회색 */
+    border: 1px solid #ccc;             /* 테두리 */
+    border-radius: 20px;                  /* 둥근 모서리 */
+    cursor: pointer;                      /* 클릭 커서 */
+    transition: all 0.2s;
+}
+
+/* 체크된 상태 레이블: 활성화 스타일 */
+.theme-toggle-group input[type="checkbox"]:checked + label {
+    background-color: #007bff;          /* 활성 파랑 */
+    color: #fff;                        /* 글자 흰색 */
+    border-color: #007bff;              /* 테두리 파랑 */
+}
+
+/* 여행테마 토글스위치*/
+.theme-toggle-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+/*====================================Sidebar Styles====================================*/
+
+/* 사이드바 기본 상태 (숨김) */
+.sidebar {
+  position: fixed;                        /* 고정 위치 */
+  top: 0; left: 0;
+  width: 450px;                           /* 사이드바 너비 */
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  transform: translateX(-450px);          /* 숨김: 왼쪽으로 이동 */
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+/* 사이드바 토글 버튼 스타일 */
+#sidebar-toggle {
+  position: absolute;
+  top: 16px;
+  right: -40px;                           /* 버튼이 사이드바 밖으로 돌출 */
+  width: 32px;
+  height: 32px;
+  background: #fff;
+  color: #007bff;
+  border: none;
+  border-radius: 4px;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* 사이드바 펼친 상태 */
+.sidebar.open {
+  transform: translateX(0);
+}
+
+/* 사이드바 펼치면 본문도 같은 너비만큼 밀어내기 */
+.sidebar.open ~ .main-wrapper {
+  margin-left: 450px;
+}
+
+/* 사이드바 내부 스크롤 처리 (입력 폼이 길어질 경우) */
+.sidebar-content {
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;                       /* 내부 스크롤 */
+}
+
+/* 사이드바 폼 주위 패널 스타일 (흰 배경, 경계, 그림자) */
+.panel {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+/*=====================================Map Container=====================================*/
+
+/* #map: Kakao Map / Leaflet 맵을 담는 div 기본 크기 */
+#map {
+    width: 100%;
+    height: 600px;              /* fixed 높이: 조정 가능 */
+    box-sizing: border-box;
+}
+
+/* .leaflet-container: Leaflet 지도의 반응형 높이 설정 */
+.leaflet-container {
+    height: 80vh !important;    /* 뷰포트 높이 80% */
+}
