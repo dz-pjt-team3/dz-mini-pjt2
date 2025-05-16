@@ -30,3 +30,5 @@ app.py파일에 pip install -r requirements.txt 삽입
 
 
 # pull 작동되는지 확인하려고 적었음
+
+# 저도 pull 작동되는지 확인하려고 적었습니다
