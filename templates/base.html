@@ -1,145 +1,39 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}AI 여행 일정 생성기{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    {% block head %}{% endblock %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}AI 여행 일정 생성기{% endblock %}</title>
+
+  <!-- ✅ 나눠 놓은 CSS 파일들 연결 -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/card.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/hero.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/plan.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+  
+  
+
+  {% block head %}{% endblock %}
 </head>
+
 <body>
-    <!-- 사이드바 -->
-    <div class="sidebar" id="sidebar">
-        <button id="sidebar-toggle" class="toggle-button">☰</button>
-        <div class="sidebar-content panel">
-            <form action="{{ url_for('index') }}" method="post" autocomplete="off">
-            <!-- 여행 날짜 선택 -->
-            <label>여행 날짜</label>
-            <div class="row">
-                <div class="half">
-                    <label for="start_date">시작일</label>
-                    <div class="date-picker">
-                        <input id="start_date" type="date" name="start_date" required>
-                    </div>
-                </div>
-                <div class="half">
-                    <label for="end_date">종료일</label>
-                    <div class="date-picker">
-                        <input id="end_date" type="date" name="end_date" required>
-                    </div>
-                </div>
-            </div>
-                <!-- 동행 유형 및 인원 수 -->
-                <div class="row">
-                <div class="half">
-                    <label>누구와</label>
-                    <select name="companions">
-                    <option value="혼자">혼자</option>
-                    <option value="친구">친구</option>
-                    <option value="연인">연인</option>
-                    <option value="가족">가족</option>
-                    <option value="기타">기타</option>
-                    </select>
-                </div>
-                <div class="half">
-                    <label>총 인원수</label>
-                    <select name="people_count">
-                    {% for i in range(1, 11) %}
-                    <option value="{{ i }}">{{ i }}명</option>
-                    {% endfor %}
-                    </select>
-                </div>
-                </div>
+  {% include "nav.html" %}
 
-                <label>여행 장소</label>
-                <select name="location">
-                    <option value="부산">부산</option>
-                    <option value="서울">서울</option>
-                    <option value="대구">대구</option>
-                    <option value="대전">대전</option>
-                    <option value="울산">울산</option>
-                    <option value="제주">제주</option>
-                    <option value="기타">기타</option>
-                </select>
-                
-                <label>교통수단</label>
-                <select name="transport_mode">
-                    <option value="버스">버스</option>
-                    <option value="자차">자차</option>
-                    <option value="기차">기차</option>
-                    <option value="도보">도보</option>
-                    <option value="기타">기타</option>
-                </select>
+  {% if request.endpoint == 'plan' %}
+    {% include "sidebar.html" %}
+  {% endif %}
 
-                <label>여행 테마</label>
-                <div class="theme-toggle-group">
-                <input type="checkbox" id="theme1" name="theme" value="맛집">
-                <label for="theme1">맛집</label>
+  <div class="main-wrapper">
 
-                <input type="checkbox" id="theme2" name="theme" value="카페">
-                <label for="theme2">카페</label>
 
-                <input type="checkbox" id="theme3" name="theme" value="자연경관">
-                <label for="theme3">자연경관</label>
+    {% block content %}{% endblock %}
+  </div>
 
-                <input type="checkbox" id="theme4" name="theme" value="역사탐방">
-                <label for="theme4">역사탐방</label>
 
-                <input type="checkbox" id="theme5" name="theme" value="축제">
-                <label for="theme5">축제</label>
 
-                <input type="checkbox" id="theme6" name="theme" value="쇼핑">
-                <label for="theme6">쇼핑</label>
-                </div>
-
-                <label>추가 조건을 작성해 주세요</label>
-                <textarea name="user_prompt" rows="4"
-                placeholder="예: 첫날은 동궁과월지를 꼭 넣어주세세요."></textarea>
-
-                <button type="submit">일정 생성</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- 메인 컨텐츠 -->
-    <div class="main-wrapper">
-        <!-- 사이트 헤더 -->
-        <header class="site-header">
-            <h1>🧳 AI 여행 일정 생성기</h1>
-        </header>
-
-        {% block content %}{% endblock %}
-    </div>
-
-    <!-- 사이드바 토글 스크립트 -->
-    <script>
-        const sidebar = document.getElementById('sidebar');
-        const toggle  = document.getElementById('sidebar-toggle');
-        toggle.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-        });
-    </script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.date-picker').forEach(wrapper => {
-    const inp = wrapper.querySelector('input[type="date"]');
-    // wrapper 전체를 클릭 가능하다는 시각적 힌트
-    wrapper.style.cursor = 'pointer';
-    wrapper.addEventListener('click', e => {
-      // 실제 input을 직접 누른 게 아니면
-      if (e.target !== inp) {
-        // 최신 브라우저: 달력 바로 열기
-        if (typeof inp.showPicker === 'function') {
-          inp.showPicker();
-        } else {
-          inp.focus();
-        }
-      }
-    });
-  });
-});
-</script>
-
-    {% block scripts %}{% endblock %}
+  {% block scripts %}{% endblock %}
 </body>
 </html>

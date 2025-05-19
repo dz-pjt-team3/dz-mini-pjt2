@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
 <DZ_MINI_PROJECT_TEAM3>
 # 구성
 travelapp/
@@ -27,3 +29,6 @@ L requests
 L markdown
 
 app.py파일에 pip install -r requirements.txt 삽입
+=======
+# dz-pjt-menu
+>>>>>>> 2166f868cec25665a0b04ead1b1a282dd576bcf2

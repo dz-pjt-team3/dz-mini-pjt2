@@ -1,0 +1,38 @@
+/**
+ * plan.css
+ * ──────────────────────────────────────────────────────
+ * “일정 생성”(plan.html) 페이지 전용 스타일
+ */
+
+/* ─── 일정 & 지도 그리드 ─────────────────────────────── */
+.grid-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+.center-panel, .right-panel {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+.center-panel {
+  flex: 1;
+}
+.right-panel {
+  flex: 2;            /* 지도 패널을 더 넓게 */
+}
+
+/* ─── 일정 출력 박스 ─────────────────────────────────── */
+.itinerary-box {
+  max-height: 600px;
+  overflow-y: auto;
+  line-height: 1.6;
+}
+
+/* ─── 지도 컨테이너 ─────────────────────────────────── */
+.map-container {
+  width: 100%;
+  height: 500px;
+  border-radius: 4px;
+}

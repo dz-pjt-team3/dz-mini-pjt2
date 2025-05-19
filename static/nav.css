@@ -1,0 +1,21 @@
+/**
+ * nav.css
+ * ──────────────────────────────────────────────────────
+ * 사이트 최상단 네비게이션 바 스타일
+ */
+
+/* ─── 네비게이션 바 전체 ────────────────────────────── */
+.navbar {
+  background-color: #007bff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 100;
+}
+
+/* ─── 로고 / 타이틀 ─────────────────────────────────── */
+.navbar .logo {
+  color: #fff;
+  font-size: 1.2rem;
+  text-decoration: none;
+}

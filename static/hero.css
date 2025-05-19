@@ -1,0 +1,32 @@
+/**
+ * hero.css
+ * ──────────────────────────────────────────────────────
+ * 메인(홈) 페이지 최상단 히어로 섹션 스타일
+ */
+
+/* ─── 히어로 섹션 ───────────────────────────────────── */
+.hero {
+  background-color: #007bff;
+  color: #fff;
+  padding: 80px 20px;
+  text-align: center;
+}
+.hero h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+.hero p {
+  font-size: 1rem;
+  margin-bottom: 24px;
+}
+.hero-button {
+  padding: 12px 24px;
+  background-color: #fff;
+  color: #007bff;
+  border-radius: 6px;
+  font-size: 1rem;
+  text-decoration: none;
+}
+.hero-button:hover {
+  background-color: #e0e0e0;
+}

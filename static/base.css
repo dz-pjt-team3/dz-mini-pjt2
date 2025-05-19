@@ -1,0 +1,81 @@
+/*======================================Base Styles======================================*/
+/* 📄 전체 웹 페이지(body)에 적용되는 기본 스타일 */
+body {
+    font-family: 'Segoe UI', sans-serif; /* 글꼴: Segoe UI 사용, 없으면 기본 sans-serif */
+    background-color: #f4f4f4;         /* 배경색: 연한 회색 (눈에 편한 톤) */
+    margin: 0;                           /* 브라우저 기본 여백 제거 */
+    padding: 0;                          /* 안쪽 여백도 제거 */
+  color: #333;                         /* 기본 텍스트 색 */
+}
+
+/* ─── 링크 공통 ─────────────────────────────────────── */
+a {
+  color: #007bff;       /* 링크 텍스트 파랑 */
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* 🖱️ button: 폼 제출 버튼 스타일 */
+button,
+button[type="submit"],
+.hero-button {
+  display: inline-block;
+  padding: 10px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color .2s;
+}
+button:hover,
+button[type="submit"]:hover,
+.hero-button:hover {
+  background-color: #0056b3;
+}
+
+/* 입력(input), 선택(select), textarea: 공통 폼 컨트롤 스타일 */
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;                          /* 너비 100% */
+  padding: 8px;                         /* 내부 여백 */
+  margin-top: 4px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+/* ─── 레이블 공통 ───────────────────────────────────── */
+label {
+  font-weight: bold;
+  display: block;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+/* ─── 헤더 / 푸터 ───────────────────────────────────── */
+header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+}
+footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+}
+
+/* ─── 반응형 통합 ──────────────────────────────────── */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}

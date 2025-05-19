@@ -1,0 +1,44 @@
+/**
+ * sidebar.css
+ * ──────────────────────────────────────────────────────
+ * “일정 생성” 페이지의 사이드바(Form) 전용 스타일
+ */
+
+/* ─── 사이드바 숨김/표시 ────────────────────────────── */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+  transform: translateX(-400px);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+.sidebar.open {
+  transform: translateX(0);
+}
+.sidebar-content {
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* ─── 토글 버튼 ─────────────────────────────────────── */
+.toggle-button {
+  position: absolute;
+  top: 16px;
+  right: -40px;
+  width: 32px;
+  height: 32px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}

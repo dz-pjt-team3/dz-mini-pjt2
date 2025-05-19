@@ -1,0 +1,42 @@
+/**
+ * card.css
+ * ──────────────────────────────────────────────────────
+ * 홈 화면의 “정보 카드”(음식점/카페/숙소) 섹션 스타일
+ */
+
+/* ─── 카드 컨테이너 ─────────────────────────────────── */
+.card-section {
+  padding: 40px 20px;
+  background-color: #fff;
+}
+.card-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ─── 개별 카드 ────────────────────────────────────── */
+.info-card {
+  width: 220px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.info-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+.info-card p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
