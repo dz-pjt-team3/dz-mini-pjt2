@@ -90,18 +90,33 @@ def extract_schedule_entries(text: str) -> list:
     return schedule
 
 # 5.15 15시 신규함수
-def search_category(category_code: str, region: str, size=15) -> list:
+def search_category(category_code: str, region: str, size=15, radius=10000) -> list:
     """
-    카카오 로컬 카테고리 검색 API 호출
+    카카오 로컬 카테고리 검색 API 호출 (반경 검색)
+    1) region → 중심좌표(lat, lng)로 변환
+    2) 카테고리 + x,y,radius 파라미터로 API 호출
+
     category_code: 'CE7'(카페), 'FD6'(음식점), 'AT4'(관광지) 등
-    region: 검색할 지역 키워드
+    region: 검색할 지역명 (예: '서울 강남구')
+    size: 한 번에 가져올 문서 개수
+    radius: 중심 좌표로부터 탐색 반경(m)
     """
     REST_KEY = os.environ["KAKAO_REST_API_KEY"]
     url = "https://dapi.kakao.com/v2/local/search/category.json"
     headers = {"Authorization": f"KakaoAK {REST_KEY}"}
+
+# 5.19 09시 신규함수
+    # 지역명 → 좌표변환
+    coords = get_kakao_coords(region)   # 기존에 정의된 함수 재사용
+    if not coords:
+        return []                       # 변환 실패 시 빈 리스트 반환
+    lat, lng = coords                   # lat: y, lng: x
+    # 카테고리 + 반경 검색 파라미터 세팅
     params = {
         "category_group_code": category_code,
-        "query": region,
+        "x": lng,
+        "y": lat,
+        "radius": radius,   # 탐색 반경 (m 단위)
         "size": size
     }
     res = requests.get(url, headers=headers, params=params).json()
@@ -131,6 +146,23 @@ def index():
         if coords:
             center_lat, center_lng = coords
 
+        # 이 리스트를 써서 GPT가 임의 생성하지 못하도록 제약
+        from itertools import chain
+        # 카테고리 코드 매핑 (원하는 테마만 포함)
+        code_map = {
+            "restaurant": "FD6",   # 음식점
+            "cafe":       "CE7",   # 카페
+            "tourism":    "AT4",   # 관광지
+        }
+        places = []
+        for code in code_map.values():
+            docs = search_category(code, location, size=20, radius=1000)
+            places.extend([d["place_name"] for d in docs])
+        # 중복 제거
+        unique_places = list(dict.fromkeys(places))
+        # GPT 프롬프트에 딱 쓸 문자열로 변환
+        places_str = ", ".join(unique_places)
+
         # 3) GPT에게 보낼 최종 프롬프트 구성
         prompt = f"""
         여행 날짜: {start_date} ~ {end_date}
@@ -139,18 +171,21 @@ def index():
         교통수단: {transport_mode}
         추가 조건: {user_prompt}
 
+        # 사용 가능한 장소 목록 (모두 {location} 반경 1km 내)
+        {places_str}
+
         **출력 형식**
         - 각 일정 항목은 다음처럼 작성해주세요.
         1일차:
-        09:00~10:00: \"해운대 해수욕장\"
+        09:00~10:00: \"해운대 해수욕장\" \n
         • 해운대의 상징인 해변에서 기분 좋은 아침을 맞이하세요. 바다의 파도 소리와 함께 상쾌한 자연경관을 즐길 수 있습니다.
-        10:30~12:00: \"더베이101\"
+        10:30~12:00: \"더베이101\" \n
         • 해운대 여러 카페 중 하나인 더베이101에서 커피를 마시며 해변의 풍경을 감상할 수 있습니다.
-        14:00~16:00: \"동백섬\"
+        14:00~16:00: \"동백섬\" \n
         •  동백섬으로 이동해 짧은 산책을 즐겨보세요. 이곳은 다양한 식물과 함께 한국 전통의 "동백꽃"을 즐길 수 있는 명소입니다.
         - 각 일정에 설명을 전문 여행 일정 플래너처럼 성의있게 정성껏 짜주세요(설명에는 장소가 안들어가도 됩니다).
         - 각 일정에 따라 정해진 장소간에 거리가 멀어지면 이동이 어려우니 멀지않은곳으로 추천해주세요.
-        - 모든 추천 장소는 반드시 {location} 시/군/구 내에 있는 식당, 카페, 관광지만 제안해줘.
+        - "role": "system", "content": "정확한 정보만 사용하며, 리스트에 없는 내용은 생성하지 마십시오."
         - 교통수단에 따라 일정을 조율해주세요.(예를들어 자차를 타면 일정끼리 거리가 멀어도 괜찮을것이고, 도보같은경우 일정끼리 거리가 가까워야합니다)
         - 가게(음식점, 카페)나 관광지같은경우 영업시간, 입장료, 대표메뉴 등등 추천해주세요.
         - 시간 앞에 적힌 장소명은 반드시 큰따옴표(\"\")로 묶어주세요.
@@ -207,8 +242,8 @@ def search(category):
     # 2) 지역 파라미터 읽기
     region = request.args.get("region", "")
 
-    # 3) 카테고리 검색 API 호출
-    places = search_category(code, region)
+    # 3) 카테고리 검색 API 호출 (반경 검색 방식)
+    places = search_category(code, region, size=15, radius=10000)
 
     # 4) 결과 렌더링
     return render_template(
