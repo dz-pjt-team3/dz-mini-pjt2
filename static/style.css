@@ -111,6 +111,23 @@ button:hover {
     display: flex;
     flex-direction: column;               /* 내부 요소 세로 배치 */
 }
+
+/* wrapper 전체를 눌러도 input이 이벤트를 방해하지 않도록 */
+.date-picker input {
+  pointer-events: none;
+}
+/* 시각적 피드백 */
+.date-picker {
+  display: inline-block;                  /* 입력창 너비만큼만 차지 */
+  padding: 0;                             /* input 주변 약간의 여백만 */
+  cursor: pointer;                        /* 마우스 포인터가 변하도록 */
+}
+.date-picker:hover {
+  background-color: white;
+}
+.date-picker label {
+  cursor: pointer;
+}
 /*==================================Theme Toggle Group==================================*/
 
 /* 토글용 체크박스 숨기기 */

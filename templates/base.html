@@ -16,14 +16,18 @@
             <!-- 여행 날짜 선택 -->
             <label>여행 날짜</label>
             <div class="row">
-            <div class="half">
-                <label>시작일</label>
-                <input type="date" name="start_date" required>
-            </div>
-            <div class="half">
-                <label>종료일</label>
-                <input type="date" name="end_date" required>
-            </div>
+                <div class="half">
+                    <label for="start_date">시작일</label>
+                    <div class="date-picker">
+                        <input id="start_date" type="date" name="start_date" required>
+                    </div>
+                </div>
+                <div class="half">
+                    <label for="end_date">종료일</label>
+                    <div class="date-picker">
+                        <input id="end_date" type="date" name="end_date" required>
+                    </div>
+                </div>
             </div>
                 <!-- 동행 유형 및 인원 수 -->
                 <div class="row">
@@ -49,10 +53,10 @@
 
                 <label>여행 장소</label>
                 <select name="location">
+                    <option value="부산">부산</option>
                     <option value="서울">서울</option>
                     <option value="대구">대구</option>
                     <option value="대전">대전</option>
-                    <option value="부산">부산</option>
                     <option value="울산">울산</option>
                     <option value="제주">제주</option>
                     <option value="기타">기타</option>
@@ -115,6 +119,26 @@
             sidebar.classList.toggle('open');
         });
     </script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.date-picker').forEach(wrapper => {
+    const inp = wrapper.querySelector('input[type="date"]');
+    // wrapper 전체를 클릭 가능하다는 시각적 힌트
+    wrapper.style.cursor = 'pointer';
+    wrapper.addEventListener('click', e => {
+      // 실제 input을 직접 누른 게 아니면
+      if (e.target !== inp) {
+        // 최신 브라우저: 달력 바로 열기
+        if (typeof inp.showPicker === 'function') {
+          inp.showPicker();
+        } else {
+          inp.focus();
+        }
+      }
+    });
+  });
+});
+</script>
 
     {% block scripts %}{% endblock %}
 </body>
