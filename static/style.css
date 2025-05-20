@@ -1,48 +1,54 @@
-/**
- * style.css
- * ──────────────────────────────────────────────────────
- * (프로젝트 전반에서 추가 커스터마이징 용)
- * - 기존 monolithic 스타일을 이곳에 모아 두고, 필요 시 덮어쓰기
- */
+/* ===== 🎈프로젝트 전반에서 추가 커스터마이징 용 ===== */
 
-/* 예시: .theme-toggle-group처럼 특정 컴포넌트 개인화 */
+/* 플렉스 컨테이너 유지 */
 .theme-toggle-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-.theme-toggle-group input[type="checkbox"] {
-  display: none;
-}
-.theme-toggle-group label {
-  padding: 8px 14px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  display: flex;                             /* 가로 방향 정렬 */
+  flex-wrap: wrap;                           /* 줄바꿈 허용 */
+  gap: 10px;                                 /* 토글 간 간격 */
+  margin-top: 10px;                          /* 위쪽 여백 */
+  margin-bottom: 20px;                       /* 아래쪽 여백 */
 }
 
+/* 체크박스 숨김 */
+.theme-toggle-group input[type="checkbox"] {
+  display: none;                             /* 기본 input 숨김 */
+}
+
+/* 토글 레이블 버튼 스타일 */
+.theme-toggle-group label {
+  padding: 8px 14px;                         /* 클릭 영역 확보 */
+  background-color: #f0f0f0;                 /* 배경: 연한 회색 */
+  border: 1px solid #ccc;                    /* 테두리: 연한 회색 */
+  border-radius: 20px;                       /* 모서리 둥글게 */
+  cursor: pointer;                           /* 클릭 커서 */
+  transition: background 0.2s, color 0.2s;   /* 배경/색상 전환 애니메이션 */
+}
+
+/* 활성 상태 */
 .theme-toggle-group input[type="checkbox"]:checked + label {
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff;
+  background-color: #007bff;                 /* 배경: 파란색 */
+  color: #fff;                               /* 텍스트: 흰색 */
+  border-color: #007bff;                     /* 테두리: 파란색 */
 }
-  /* wrapper 전체를 눌러도 input이 이벤트를 방해하지 않도록 */
+
+/* date-picker 내부 input */
 .date-picker input {
-  pointer-events: none;
+  pointer-events: none;                      /* 포인터 이벤트 비활성화 */
 }
-/* 시각적 피드백 */
+
+/* date-picker 래퍼 */
 .date-picker {
-  display: inline-block;                  /* 입력창 너비만큼만 차지 */
-  padding: 0;                             /* input 주변 약간의 여백만 */
-  cursor: pointer;                        /* 마우스 포인터가 변하도록 */
+  display: inline-block;                     /* 내용 크기만큼 차지 */
+  padding: 0;                                /* 주변 여백 없음 */
+  cursor: pointer;                           /* 클릭 커서 */
 }
+
+/* 호버 시 배경 반전 효과 */
 .date-picker:hover {
-  background-color: white;
+  background-color: white;                   /* 배경: 흰색 */
 }
+
+/* date-picker 레이블 */
 .date-picker label {
-  cursor: pointer;
+  cursor: pointer;                           /* 클릭 커서 */
 }

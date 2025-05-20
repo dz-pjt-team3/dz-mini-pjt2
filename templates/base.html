@@ -6,34 +6,34 @@
   <title>{% block title %}AI 여행 일정 생성기{% endblock %}</title>
 
   <!-- ✅ 나눠 놓은 CSS 파일들 연결 -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/card.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/hero.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/plan.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='nav.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='card.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='sidebar.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='hero.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='plan.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='responsive.css') }}">
   
-  
-
+  <!-- 추가 Head 요소: child 템플릿에서 CSS나 메타를 삽입할 영역 -->
   {% block head %}{% endblock %}
 </head>
 
 <body>
+    <!-- Navigation Bar: 모든 페이지 상단에 포함 -->
+
   {% include "nav.html" %}
 
+  <!-- Sidebar: 일정 생성(plan) 페이지에서만 표시 -->
   {% if request.endpoint == 'plan' %}
     {% include "sidebar.html" %}
   {% endif %}
 
+  <!-- Main Wrapper: 실제 페이지 컨텐츠를 감싸는 컨테이너 -->
   <div class="main-wrapper">
-
-
     {% block content %}{% endblock %}
   </div>
 
-
-
+  <!-- Scripts Block: child 템플릿에서 JS 스크립트를 삽입할 영역 -->
   {% block scripts %}{% endblock %}
 </body>
 </html>

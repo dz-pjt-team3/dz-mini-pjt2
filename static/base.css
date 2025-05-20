@@ -1,81 +1,102 @@
-/*======================================Base Styles======================================*/
-/* 📄 전체 웹 페이지(body)에 적용되는 기본 스타일 */
+/* 🎈Base Styles */
+
+/* body: 전체 페이지의 기본 글꼴, 배경색, 기본 여백 제거 */
 body {
-    font-family: 'Segoe UI', sans-serif; /* 글꼴: Segoe UI 사용, 없으면 기본 sans-serif */
-    background-color: #f4f4f4;         /* 배경색: 연한 회색 (눈에 편한 톤) */
-    margin: 0;                           /* 브라우저 기본 여백 제거 */
-    padding: 0;                          /* 안쪽 여백도 제거 */
-  color: #333;                         /* 기본 텍스트 색 */
+  font-family: 'Segoe UI', sans-serif;    /* 기본 글꼴 */
+  background-color: #f4f4f4;            /* 배경색 */
+  color: #333;                          /* 기본 텍스트 색상 */
+  margin: 0;                              /* 브라우저 기본 여백 제거 */
+  padding: 0;                             /* 브라우저 기본 패딩 제거 */
 }
 
-/* ─── 링크 공통 ─────────────────────────────────────── */
-a {
-  color: #007bff;       /* 링크 텍스트 파랑 */
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
+/* header: 그라데이션 배경 적용, 중앙 정렬 텍스트, 내부 패딩 설정 */
+header {
+  background: linear-gradient(90deg, #4facfe, #00f2fe); /* 그라데이션 배경 */
+  color: white;                                           /* 텍스트 흰색 */
+  padding: 15px;                                            /* 내부 여백 */
+  text-align: center;                                       /* 중앙 정렬 */
 }
 
-/* 🖱️ button: 폼 제출 버튼 스타일 */
+/* footer : 배경색, 내부 패딩, 중앙 정렬 */
+footer {
+  background-color: #f1f1f1;  /* 푸터 배경색 */
+  padding: 10px;                /* 내부 여백 */
+  text-align: center;           /* 중앙 정렬 */
+}
+
+/* 공통 버튼 레이아웃 및 인터랙션 스타일 정의 */
 button,
 button[type="submit"],
 .hero-button {
-  display: inline-block;
-  padding: 10px 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color .2s;
+  display: inline-block;       /* 인라인 블록 */
+  padding: 10px 15px;          /* 수직 10px, 수평 15px */
+  background-color: #007bff; /* 버튼 배경색 */
+  color: #fff;               /* 버튼 텍스트 색상 */
+  border: none;                /* 테두리 제거 */
+  border-radius: 6px;          /* 모서리 둥글게 */
+  cursor: pointer;             /* 클릭 가능 커서 */
+  font-size: 14px;             /* 글자 크기 */
+  margin-top: 10px;            /* 상단 여백 */
+  transition: background-color .2s; /* 호버 전환 효과 */
 }
+
+/* 버튼 호버 상태 */
 button:hover,
 button[type="submit"]:hover,
 .hero-button:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* 호버 시 어두운 파란색 */
 }
 
-/* 입력(input), 선택(select), textarea: 공통 폼 컨트롤 스타일 */
-input[type="text"],
+/* 입력 필드 레이블 스타일 (굵은 글씨, 블록 요소) */
+label {
+  font-weight: bold;       /* 레이블 굵게 */
+  display: block;          /* 블록 요소 */
+  margin: 10px 0;          /* 상하 여백 */
+  color: #333;           /* 텍스트 색상 */
+}
+
+/* 공통 폼 컨트롤 스타일: 너비, 여백, 테두리, 모서리 둥글게 */
 input[type="date"],
+input[type="text"],
 select,
 textarea {
-  width: 100%;                          /* 너비 100% */
-  padding: 8px;                         /* 내부 여백 */
-  margin-top: 4px;
-  margin-bottom: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-size: 14px;
+  width: 100%;               /* 너비 100% */
+  padding: 8px;              /* 내부 여백 */
+  border: 1px solid #ccc;  /* 연한 회색 테두리 */
+  border-radius: 5px;        /* 모서리 둥글게 */
+  font-size: 14px;           /* 글자 크기 */
+  box-sizing: border-box;    /* 박스 크기 계산 방식 */
+  background-color: #fff;  /* 배경 흰색 */
+  margin-bottom: 12px;       /* 하단 여백 */
 }
 
-/* ─── 레이블 공통 ───────────────────────────────────── */
-label {
-  font-weight: bold;
-  display: block;
-  margin-top: 12px;
-  font-size: 14px;
+/* 플렉스 컨테이너: 가로 방향 아이템 배치, 간격 설정 */
+.row {
+  display: flex;           /* 플렉스 레이아웃 */
+  gap: 16px;               /* 아이템 간 간격 */
+  margin-bottom: 10px;     /* 하단 여백 */
 }
 
-/* ─── 헤더 / 푸터 ───────────────────────────────────── */
-header {
-  background-color: #007bff;
-  color: #fff;
-  padding: 15px;
-  text-align: center;
-}
-footer {
-  background-color: #f1f1f1;
-  padding: 10px;
-  text-align: center;
+/* 반반 비율 분할: 각 반은 세로 레이아웃을 가짐 */
+.row .half {
+  flex: 1;                 /* 동일 비율 분할 */
+  display: flex;           /* 플렉스 레이아웃 */
+  flex-direction: column;  /* 수직 정렬 */
 }
 
-/* ─── 반응형 통합 ──────────────────────────────────── */
+/* 기본 링크 색상 및 인터랙션 스타일 */
+a {
+  color: #007bff;        /* 링크 색상 */
+  text-decoration: none;   /* 밑줄 제거 */
+}
+
+a:hover {
+  text-decoration: underline; /* 호버 시 밑줄 */
+}
+
+/* 화면 크기 축소 시 본문 글자 크기 최적화 */
 @media (max-width: 768px) {
   body {
-    font-size: 14px;
+    font-size: 14px;       /* 화면 좁아지면 글자 크기 축소 */
   }
 }

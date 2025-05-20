@@ -1,44 +1,106 @@
-/**
- * sidebar.css
- * ──────────────────────────────────────────────────────
- * “일정 생성” 페이지의 사이드바(Form) 전용 스타일
- */
+/* ===== 🎈사이드바 박스 전체 설정 ===== */
 
-/* ─── 사이드바 숨김/표시 ────────────────────────────── */
+/* 사이드바 컨테이너 */
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 400px;
-  height: 100%;
-  background-color: #fff;
-  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
-  transform: translateX(-400px);
-  transition: transform 0.3s ease;
-  z-index: 1000;
-}
-.sidebar.open {
-  transform: translateX(0);
-}
-.sidebar-content {
-  padding: 20px;
-  height: 100%;
-  overflow-y: auto;
+  position: fixed;            /* 화면에 고정 */
+  top: 48px;                  /* 내비게이션 바(48px) 아래 위치 */
+  left: 0;                    /* 좌측에 붙여서 배치 */
+  width: 450px;               /* 너비 450px 고정 */
+  height: calc(100% - 48px);  /* 전체 높이에서 내비게이션 바 높이 차감 */
+  background: #ffffff;        /* 배경: 흰색 */
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* 좌측 그림자 효과 */
+  display: flex;              /* 플렉스 컨테이너 활성화 */
+  flex-direction: column;     /* 세로 방향 아이템 배치 */
+  z-index: 3000;              /* 다른 요소보다 위에 표시 */
+  transform: translateX(-450px); /* 초기 상태: 화면 밖으로 숨김 */
+  transition: transform 0.3s ease; /* 열림/닫힘 부드러운 애니메이션 */
 }
 
-/* ─── 토글 버튼 ─────────────────────────────────────── */
-.toggle-button {
-  position: absolute;
-  top: 16px;
-  right: -40px;
-  width: 32px;
-  height: 32px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 20px;
-  line-height: 1;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+/* 토글 버튼 */
+#sidebar-toggle {
+  position: absolute;         /* 사이드바 내부에서 절대 위치 */
+  top: 12px;                  /* 상단에서 12px 아래 */
+  right: -40px;               /* 우측에서 40px 바깥 */
+  width: 32px;                /* 버튼 너비 32px */
+  height: 32px;               /* 버튼 높이 32px */
+  background: #fff;           /* 배경: 흰색 */
+  color: #007bff;             /* 텍스트: 파란색 */
+  border: none;               /* 테두리 제거 */
+  border-radius: 4px;         /* 모서리 둥글게 4px */
+  font-size: 20px;            /* 폰트 크기 20px */
+  cursor: pointer;            /* 클릭 커서 */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* 그림자 효과 */
+  z-index: 2100;              /* 사이드바보다 앞에 표시 */
+}
+
+/* 열림/닫힘 상태 */
+.sidebar.open {
+  transform: translateX(0);   /* 열림 상태: 원위치 */
+}
+
+.sidebar.open ~ .main-wrapper {
+  margin-left: 450px;         /* 메인 영역을 오른쪽으로 450px 밀기 */
+}
+
+/* 내부 구조 */
+.sidebar-content {
+  flex: 1;                    /* 남은 공간 모두 차지 */
+  display: flex;              /* 플렉스 컨테이너 */
+  flex-direction: column;     /* 세로 방향 배치 */
+  overflow: hidden;           /* 내용 넘침 숨김 */
+}
+
+.sidebar-scroll {
+  flex: 1;                    /* 가변 높이 */
+  overflow-y: auto;           /* 세로 스크롤 활성화 */
+  padding: 20px;              /* 내부 여백 */
+  box-sizing: border-box;     /* 패딩 포함 크기 계산 */
+}
+
+
+.sidebar-footer {
+  padding: 16px;              /* 내부 여백 */
+  border-top: 1px solid #eee; /* 상단 구분선 */
+  background: #fff;           /* 배경: 흰색 */
+  flex-shrink: 0;             /* 축소 방지 */
+}
+
+/* 패널 공통 스타일 */
+.panel {
+  background: #fff;           /* 패널 배경: 흰색 */
+  border: 1px solid #ddd;     /* 연한 테두리 */
+  border-radius: 8px;         /* 모서리 둥글게 */
+  padding: 16px;              /* 내부 여백 */
+  margin: 16px;               /* 외부 여백 */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* 그림자 효과 */
+}
+
+/* 테마 토글 그룹 */
+.theme-toggle-group {
+  display: flex;              /* 플렉스 그룹 */
+  flex-wrap: wrap;            /* 줄바꿈 허용 */
+  gap: 10px;                  /* 아이템 간 간격 */
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.theme-toggle-group input[type="checkbox"] {
+  display: none;              /* 체크박스 숨김 */
+}
+
+.theme-toggle-group label {
+  padding: 8px 14px;          /* 내부 여백 */
+  background-color: #f0f0f0;  /* 배경: 연한 회색 */
+  border: 1px solid #ccc;     /* 테두리 */
+  border-radius: 20px;        /* 모서리 둥글게 */
+  cursor: pointer;            /* 클릭 커서 */
+  transition: all 0.2s;       /* 전환 효과 */
+  display: inline-block;
+  font-weight: 500;           /* 약간 굵은 폰트 */
+}
+
+.theme-toggle-group input[type="checkbox"]:checked + label {
+  background-color: #007bff;  /* 선택 시 배경 파란색 */
+  color: white;               /* 선택 시 텍스트 흰색 */
+  border-color: #007bff;      /* 테두리 파란색 */
 }

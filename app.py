@@ -1,8 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for
 import os
 import re
 import requests
 import markdown
+from flask import Flask, render_template, request, redirect, url_for
 from openai import OpenAI
 from dotenv import load_dotenv
 
@@ -308,14 +308,19 @@ def plan():
         {yt_info_str}
 
         **출력 형식**
-        1일차:
-        09:00~10:00: "장소명"\n
-        - 설명.
+        1일차:\n
+        1) "장소명"\n
+        • 한줄 설명.\n
+        • 영업시간 :\n
+        • 입장료 or 메뉴추천:\n
+
+        **출력조건**
+        - {location}에 따른 장소는 2~ 3곳으로 고정.
+        - 여행일정 장소명 앞에 {location} 추가.
         - 위 “유튜브 참고 영상”을 참고하여, 각 장소에 대한 추가 설명(추천 이유, 꿀팁 등)을 일정에 반영해주세요.
-        - 각 일정에 대해 성의있는 설명과 장소 추천
-        - 일정에 따라 정해진 장소간에 거리가 멀어지면 이동이 어려우니 멀지않은곳으로 추천해주세요.
+        - 각 일정에 따라 정해진 장소들 끼리 거리가 멀지않은곳으로 추천해주세요.
         - 교통수단에 따라 일정을 조율해주세요.
-        - 가게(음식점, 카페)나 관광지같은경우 영업시간, 입장료 기입, 메뉴추천 등등 적어주세요.
+        - 가게(음식점, 카페)나 관광지같은경우 영업시간, 입장료, 메뉴추천 등등 정보를 적어주세요.
         - 시간 앞에 적힌 장소명은 반드시 큰따옴표(\"\")로 묶어주세요.
         """
 

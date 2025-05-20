@@ -1,42 +1,38 @@
-/**
- * card.css
- * ──────────────────────────────────────────────────────
- * 홈 화면의 “정보 카드”(음식점/카페/숙소) 섹션 스타일
- */
+/* ===== 🎈card.css ===== */
+/* 설명: 홈 화면의 음식점/카페/숙소 등의 정보 카드를 배치 */
 
-/* ─── 카드 컨테이너 ─────────────────────────────────── */
+/* 섹션 컨테이너 */
 .card-section {
-  padding: 40px 20px;
-  background-color: #fff;
-}
-.card-container {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
+  padding: 60px 40px;         /* 상하 60px, 좌우 40px 패딩 */
+  background-color: #f9f9f9;  /* 연한 회색 배경 */
+  text-align: center;         /* 섹션 내 텍스트 중앙 정렬 */
 }
 
-/* ─── 개별 카드 ────────────────────────────────────── */
+/* 카드 레이아웃 컨테이너 */
+.card-container {
+  display: flex;              /* 플렉스 컨테이너 지정 */
+  justify-content: center;    /* 가로 중앙 정렬 */
+  gap: 30px;                  /* 카드 간 30px 간격 */
+  flex-wrap: wrap;            /* 화면 너비 초과 시 줄바꿈 */
+  max-width: 1000px;          /* 최대 너비 1000px */
+  margin: auto;               /* 좌우 중앙 정렬 */
+}
+
+/* 개별 정보 카드 */
 .info-card {
-  width: 220px;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  text-align: center;
-  text-decoration: none;
-  color: #333;
-  transition: transform 0.2s, box-shadow 0.2s;
+  background-color: white;           /* 흰색 배경 */
+  padding: 30px 20px;                /* 상하 30px, 좌우 20px 패딩 */
+  border-radius: 12px;               /* 모서리 둥글게 처리 */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* 그림자 효과 */
+  width: 280px;                      /* 카드 너비 280px 고정 */
+  text-decoration: none;             /* 링크 밑줄 제거 */
+  color: #333;                       /* 텍스트 기본 색상 */
+  transition: all 0.25s ease-in-out; /* 호버 시 부드러운 변화 */
 }
+
+/* 카드 호버 효과 */
 .info-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-.info-card h3 {
-  margin-bottom: 10px;
-  font-size: 1.1rem;
-}
-.info-card p {
-  font-size: 0.9rem;
-  line-height: 1.4;
+  transform: translateY(-5px);            /* 위로 5px 이동 */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15); /* 그림자 강화 */
+  color: #007bff;                         /* 호버 시 파란색 텍스트 */
 }

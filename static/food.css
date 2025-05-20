@@ -1,62 +1,65 @@
-/**
- * food.css
- * ──────────────────────────────────────────────────────
- * “음식점 추천” 페이지 전용 스타일
- */
+/* ===== 🎈food.css (음식점) ===== */
 
-/* ─── 레이아웃: 3분할 ───────────────────────────────── */
+/* 레이아웃 컨테이너 */
 .grid-layout {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
+  display: flex;     /* Flex 컨테이너 활성화 */
+  gap: 20px;         /* 패널 간 20px 간격 */
+  margin: 20px;      /* 컨테이너 외부 여백 */
 }
+
+/*  */
 .left-panel, .center-panel, .right-panel {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  padding: 20px;
+  background: #fff;                           /* 흰색 배경 */
+  padding: 20px;                                /* 내부 여백 */
+  border-radius: 12px;                          /* 모서리 둥글게 */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);     /* 부드러운 그림자 */
 }
+
+/* 왼쪽 패널 설정 */
 .left-panel {
-  flex: 1;
-  max-width: 300px;
+  width: 300px;       /* 고정 너비 300px */
+  flex-shrink: 0;     /* 축소되지 않도록 설정 */
 }
-.center-panel {
-  flex: 2;
-}
+
+/* 중앙 및 오른쪽 패널 설정 */
+.center-panel,
 .right-panel {
-  flex: 1;
+  flex: 1;            /* 동일 비율로 공간 분할 */
+  min-width: 0;       /* 내용 넘침 시 축소 허용 */
 }
 
-/* ─── 음식점 리스트 ─────────────────────────────────── */
+/* 음식점 리스트 */
 .place-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.place-item {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.place-item:hover {
-  background-color: #f0f8ff;
+  list-style: none;         /* 리스트 아이콘 제거 */
+  padding-left: 0;          /* 왼쪽 패딩 제거 */
+  margin-top: 20px;         /* 위쪽 여백 20px */
 }
 
-/* ─── 유튜브 목록 ───────────────────────────────────── */
+/* 각 장소 아이템 */
+.place-item {
+  padding: 10px;              /* 내부 여백 */
+  border-bottom: 1px solid #eee; /* 구분선 */
+  cursor: pointer;            /* 커서 포인터 */
+}
+
+/* 장소 아이템 호버 효과 */
+.place-item:hover {
+  background-color: #f0f8ff; /* 배경 */
+}
+
+/* 유튜브 영상 섹션 */
 .youtube-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  list-style: none;   /* 불릿 제거 */
+  padding: 0;         /* 패딩 초기화 */
 }
+
 .youtube-list li {
-  margin-bottom: 12px;
+  margin-bottom: 20px; /* 아이템 간 하단 여백 */
 }
+
+/* 유튜브 썸네일 이미지 스타일: 너비, 모서리, 그림자 */
 .youtube-list img {
-  width: 100%;
-  border-radius: 4px;
-}
-.youtube-list a {
-  text-decoration: none;
-  color: inherit;
+  width: 100%;                             /* 너비 100% */
+  border-radius: 8px;                      /* 모서리 둥글게  */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 그림자 효과 */
 }

@@ -1,32 +1,41 @@
-/**
- * hero.css
- * ──────────────────────────────────────────────────────
- * 메인(홈) 페이지 최상단 히어로 섹션 스타일
- */
+/* ===== 🎈메인 섹션 ===== */
 
-/* ─── 히어로 섹션 ───────────────────────────────────── */
+/* 섹션 컨테이너 */
 .hero {
-  background-color: #007bff;
-  color: #fff;
-  padding: 80px 20px;
-  text-align: center;
+  background: linear-gradient(90deg, #4facfe, #00f2fe); /* 좌→우 그라데이션 */
+  color: white;                                      /* 텍스트 흰색 */
+  /* margin-top: <값>px; */                           /* 상단 여백 (필요에 따라 값 설정) */
+  padding: 100px 60px;                               /* 상하 100px, 좌우 60px */
+  text-align: center;                                /* 중앙 정렬 */
+  /* border-radius: 8px; */                          /* 둥근 모서리 (옵션) */
+  /* margin-bottom: <값>px; */                        /* 하단 여백 (필요에 따라 값 설정) */
 }
+
+/* 제목 스타일 */
 .hero h2 {
-  font-size: 2rem;
-  margin-bottom: 16px;
+  font-size: 28px;    /* 제목 글자 크기 */
+  margin-bottom: 10px;/* 제목과 본문 간 간격 */
 }
+
+/* 본문 스타일 */
 .hero p {
-  font-size: 1rem;
-  margin-bottom: 24px;
+  font-size: 16px;    /* 본문 글자 크기 */
+  margin-bottom: 20px;/* 본문과 버튼 간 간격 */
 }
+
+/* 버튼 스타일 */
 .hero-button {
-  padding: 12px 24px;
-  background-color: #fff;
-  color: #007bff;
-  border-radius: 6px;
-  font-size: 1rem;
-  text-decoration: none;
+  display: inline-block;            /* 인라인 블록으로 크기 조절 */
+  background-color: #fff;           /* 버튼 배경색 */
+  color: #007bff;                   /* 텍스트 색상 */
+  padding: 10px 20px;               /* 클릭 영역 확대 */
+  border-radius: 6px;               /* 모서리 둥글게 */
+  text-decoration: none;            /* 링크 밑줄 제거 */
+  font-weight: bold;                /* 볼드체 */
+  transition: background 0.2s;      /* 호버 시 배경 전환 */
 }
+
+/* 버튼 호버 상태 */
 .hero-button:hover {
-  background-color: #e0e0e0;
+  background-color: #e0e0e0;        /* 호버 시 밝은 회색 */
 }
