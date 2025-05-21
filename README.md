@@ -20,7 +20,7 @@ AI(Generative AI)를 활용해 여행 일정을 자동으로 생성하고, 다�
 travelapp/
 ├── app.py                 # 메인 플라스크 애플리케이션
 ├── requirements.txt       # 파이썬 패키지 목록
-├── .env                   # 환경 변수 파일
+├── .env                   # 환경 변수 파일 (API-KEY 로드)
 │
 ├── templates/             # Jinja2 템플릿
 │   │
