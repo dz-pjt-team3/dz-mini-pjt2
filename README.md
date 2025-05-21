@@ -27,8 +27,8 @@ travelapp/
 │   ├── base.html          # 공통 레이아웃
 │   ├── cafe.html          # 카페 검색 페이지
 │   ├── food.html          # 맛집 검색 페이지
-│   ├── index.html         # 메인 페이지 상단 박스스
-│   ├── nav.html           # 메인페이지 상단 Happy Imagination
+│   ├── index.html         # 홈화면 상단 박스
+│   ├── nav.html           # 홈화면 상단 Happy Imagination
 │   ├── plan.html          # 일정 생성 & 지도 페이지
 │   └── sidebar.html       # 일정 생성 페이지(사이드바)
 │
@@ -39,8 +39,8 @@ travelapp/
 │   ├── card.css           # 메인 페이지 카드(음식점,카페,숙소소)
 │   ├── cafe.css           # 카페 검색 페이지
 │   ├── food.css           # 맛집 검색 페이지
-│   ├── hero.css           # 메인페이지 상단 박스
-│   ├── nav.css            # 메인페이지 상단 Happy Imagination
+│   ├── hero.css           # 홈화면 상단 박스
+│   ├── nav.css            # 홈화면 상단 Happy Imagination
 │   ├── plan.css           # 일정 생성 & 지도 페이지
 │   ├── sidebar.css        # 일정 생성 페이지(사이드바)
 │   └── style.css          # 추가 커스터마이징
