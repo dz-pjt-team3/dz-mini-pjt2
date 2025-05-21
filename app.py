@@ -259,6 +259,8 @@ def plan():
     markers = []
     center_lat, center_lng = 36.5, 127.5  # 기본 지도 중심
 
+    route_data = {}
+
     if request.method == "POST":
         # 사용자 입력
         start_date     = request.form.get("start_date")
@@ -341,13 +343,37 @@ def plan():
                     "time": entry["time"],
                     "desc": entry["desc"]
                 })
+        # 2) 다중 경유지 길찾기 API 호출 (Kakao Mobility Waypoints)
+        route_data = {}
+        if len(markers) >= 2:
+            origin      = markers[0]
+            destination = markers[-1]
+            waypoints   = markers[1:-1]
+            payload = {
+                "origin":      {"x": origin["lng"],      "y": origin["lat"]},
+                "destination": {"x": destination["lng"], "y": destination["lat"]},
+                "waypoints":   [{"x": m["lng"], "y": m["lat"]} for m in waypoints],
+                "priority":    "RECOMMEND"
+            }
+            headers = {
+                "Authorization": f"KakaoAK {os.environ['KAKAO_REST_API_KEY']}",
+                "Content-Type":  "application/json"
+            }
+            resp = requests.post(
+                "https://apis-navi.kakaomobility.com/v1/waypoints/directions",
+                headers=headers,
+                json=payload
+            )
+            if resp.ok:
+                route_data = resp.json()
 
     return render_template("plan.html",
                            result=result,
                            kakao_key=os.environ["KAKAO_JAVASCRIPT_KEY"],
                            markers=markers,
                            center_lat=center_lat,
-                           center_lng=center_lng)
+                           center_lng=center_lng,
+                           route_data=route_data)
 
 # ✅ 카테고리 검색 (음식점, 카페, 관광지 등)
 @app.route("/search/<category>")
