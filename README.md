@@ -20,26 +20,30 @@ travelapp/
 ├── app.py                 # 메인 플라스크 애플리케이션
 ├── requirements.txt       # 파이썬 패키지 목록
 ├── .env                   # 환경 변수 파일
+│
 ├── templates/             # Jinja2 템플릿
-│   ├── base.html          # 공통 레이아웃
-│   ├── index.html         # 메인 페이지
-│   ├── plan.html          # 일정 생성 & 지도 페이지
-│   ├── food.html          # 맛집 검색 페이지
-│   ├── cafe.html          # 카페 검색 페이지
+│   │
 │   ├── acc.html           # 숙소 검색 페이지
-│   └── search.html        # 카테고리 검색 결과
-└── static/                # 정적 파일
-├── base.html              # 공통 레이아웃
+│   ├── base.html          # 공통 레이아웃
+│   ├── cafe.html          # 카페 검색 페이지
+│   ├── food.html          # 맛집 검색 페이지
+│   ├── index.html         # 메인 페이지 상단 박스스
+│   ├── nav.html           # 메인페이지 상단 Happy Imagination
+│   ├── plan.html          # 일정 생성 & 지도 페이지
+│   └── sidebar.html       # 일정 생성 페이지(사이드바)
+│
+└── static/
+│   │
 │   ├── acc.css            # 숙소 검색 페이지
 │   ├── base.css           # 일정 생성 & 지도 페이지
-│   ├── card.css           # 
+│   ├── card.css           # 메인 페이지 카드(음식점,카페,숙소소)
 │   ├── cafe.css           # 카페 검색 페이지
 │   ├── food.css           # 맛집 검색 페이지
-│   ├── hero.css           # 
-│   ├── nav.css            # 
-│   ├── plan.css           # plan 사이드바
-│   ├── sidebar.css        # 
-│   └── style.css          # 
+│   ├── hero.css           # 메인페이지 상단 박스
+│   ├── nav.css            # 메인페이지 상단 Happy Imagination
+│   ├── plan.css           # 일정 생성 & 지도 페이지
+│   ├── sidebar.css        # 일정 생성 페이지(사이드바)
+│   └── style.css          # 추가 커스터마이징
 
 # install
 pip install Flask            # 웹 프레임워크
