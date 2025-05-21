@@ -15,7 +15,8 @@ AI(Generative AI)를 활용해 여행 일정을 자동으로 생성하고, 다�
 
 • 다양한 검색 연동 (선택): Naver 블로그, Google Custom Search API, SerpAPI 등을 통해 추가적인 콘텐츠 검색이 가능합니다.
 
-```# 구성
+# 구성
+```
 travelapp/
 ├── app.py                 # 메인 플라스크 애플리케이션
 ├── requirements.txt       # 파이썬 패키지 목록
@@ -46,19 +47,21 @@ travelapp/
 │   └── style.css          # 추가 커스터마이징
 ```
 # install
+```
 pip install Flask            # 웹 프레임워크
 pip install python-dotenv    # .env 환경변수 로드
 pip install openai           # OpenAI API 클라이언트
 pip install requests         # Kakao REST API 호출용
 pip install markdown         # GPT 응답(마크다운→HTML) 변환
-
+```
 ---------------------↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓---------------------
 # 배포
+```
 requirements.txt
 L Flask
 L python-dotenv
 L openai
 L requests
 L markdown
-
+```
 app.py파일에 pip install -r requirements.txt 삽입
